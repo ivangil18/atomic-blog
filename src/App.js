@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { PostProvider, PostContext } from "./PostContext";
 import { faker } from "@faker-js/faker";
+import DarkMode from "./DarkMode";
 
 function createRandomPost() {
   return {
@@ -10,23 +11,9 @@ function createRandomPost() {
 }
 
 function App() {
-  const [isFakeDark, setIsFakeDark] = useState(false);
-  // Whenever `isFakeDark` changes, we toggle the `fake-dark-mode` class on the HTML element (see in "Elements" dev tool).
-  useEffect(
-    function () {
-      document.documentElement.classList.toggle("fake-dark-mode");
-    },
-    [isFakeDark]
-  );
-
   return (
     <section>
-      <button
-        onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
-        className="btn-fake-dark-mode"
-      >
-        {isFakeDark ? "☀️" : "🌙"}
-      </button>
+      <DarkMode />
       <PostProvider>
         <Header />
         <Main />
